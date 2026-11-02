@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    @apply bg-abyss-950 text-gray-100 font-sans antialiased;
+    overscroll-behavior: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-abyss-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-abyss-600 rounded-full;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-abyss-900/80 backdrop-blur-md border border-abyss-700/50 rounded-2xl shadow-xl;
+  }
+  
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-abyss-500/50 hover:shadow-2xl hover:shadow-abyss-500/10;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2.5 bg-abyss-600 hover:bg-abyss-500 text-white font-medium rounded-xl transition-all duration-200 active:scale-95 shadow-lg shadow-abyss-600/25;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2.5 bg-abyss-800 hover:bg-abyss-700 text-gray-200 font-medium rounded-xl border border-abyss-600/50 transition-all duration-200 active:scale-95;
+  }
+
+  .btn-accent {
+    @apply px-4 py-2.5 bg-sable-600 hover:bg-sable-500 text-abyss-950 font-semibold rounded-xl transition-all duration-200 active:scale-95 shadow-lg shadow-sable-600/25;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full;
+  }
+  
+  .badge-green {
+    @apply badge bg-green-500/20 text-green-400 border border-green-500/30;
+  }
+  .badge-orange {
+    @apply badge bg-orange-500/20 text-orange-400 border border-orange-500/30;
+  }
+  .badge-red {
+    @apply badge bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+  
+  .score-ring {
+    @apply relative flex items-center justify-center;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-abyss-700/50 rounded-lg;
+  }
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  background: #001527 !important;
+  font-family: 'Inter', sans-serif !important;
+  z-index: 1;
+}
+
+.leaflet-control-zoom a {
+  background: #002a4e !important;
+  color: #cce1f3 !important;
+  border-color: #003f75 !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #003f75 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(0,21,39,0.85) !important;
+  color: #66a5db !important;
+  font-size: 9px !important;
+}
+.leaflet-control-attribution a {
+  color: #99c3e7 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(0,42,78,0.95) !important;
+  color: #e5e7eb !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(0,105,195,0.3) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
+}
+.leaflet-popup-tip {
+  background: rgba(0,42,78,0.95) !important;
+  border-color: rgba(0,105,195,0.3) !important;
+}
+.leaflet-popup-close-button {
+  color: #99c3e7 !important;
+}
+
+/* GPS Pulse Marker */
+.gps-marker {
+  position: relative;
+}
+.gps-marker-dot {
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+  position: relative;
+  z-index: 2;
+}
+.gps-marker-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  animation: radar 2s ease-out infinite;
+  z-index: 1;
+}
+
+@keyframes radar {
+  0% { width: 16px; height: 16px; opacity: 0.8; }
+  100% { width: 80px; height: 80px; opacity: 0; }
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
